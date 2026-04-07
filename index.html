@@ -303,12 +303,7 @@
                 </form>
                 
                 <div class="guestbook-list" id="comment-list">
-                    <div class="comment-item">
-                        <span class="c-time">Baru saja</span>
-                        <div class="c-name">Keluarga Besar</div>
-                        <div class="c-text">Selamat menempuh hidup baru! Semoga samawa.</div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
@@ -413,7 +408,6 @@
             }
         }
 
-        // Pesan alert diubah menjadi lebih umum untuk Rekening dan Kado
         function salinTeks(id) {
             const txt = document.getElementById(id).innerText;
             navigator.clipboard.writeText(txt).then(() => alert("Berhasil disalin!"));

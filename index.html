@@ -121,7 +121,7 @@
         .gallery-grid img:hover { transform: scale(1.05); }
 
         /* --- ANGPAO, RSVP & BUKU TAMU --- */
-        .bank-card { background: white; padding: 25px; border-radius: 15px; max-width: 400px; margin: 20px auto; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .bank-card { background: white; padding: 25px; border-radius: 15px; max-width: 400px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .rsvp-form input, .rsvp-form select, .rsvp-form textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; font-family: inherit; }
         
@@ -268,11 +268,26 @@
     <section class="container reveal">
         <h2 class="title">Wedding Gift</h2>
         <p style="color: #666; margin-bottom: 20px;">Kehadiran Anda adalah hadiah terindah, namun jika Anda ingin memberikan tanda kasih dapat melalui:</p>
-        <div class="bank-card">
-            <h3 style="color: #0033aa; margin-bottom: 10px;">BCA</h3>
-            <p id="rekening-bca" style="font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;">1234567890</p>
-            <p style="font-size: 0.9rem; color: #888;">a.n Agung Setiazi</p>
-            <button class="btn" style="margin-top: 15px;" onclick="salinTeks('rekening-bca')"><i class="far fa-copy"></i> Salin Rekening</button>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+            
+            <div class="bank-card" style="flex: 1; min-width: 280px; margin: 0;">
+                <h3 style="color: #0033aa; margin-bottom: 10px;"><i class="fas fa-credit-card"></i> BCA</h3>
+                <p id="rekening-bca" style="font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;">1234567890</p>
+                <p style="font-size: 0.9rem; color: #888;">a.n Agung Setiazi</p>
+                <button class="btn" style="margin-top: 15px;" onclick="salinTeks('rekening-bca')"><i class="far fa-copy"></i> Salin Rekening</button>
+            </div>
+
+            <div class="bank-card" style="flex: 1; min-width: 280px; margin: 0;">
+                <h3 style="color: var(--gold); margin-bottom: 10px;"><i class="fas fa-gift"></i> Kirim Kado</h3>
+                <div id="alamat-kado" style="font-size: 0.9rem; color: #555; line-height: 1.6; margin-bottom: 15px;">
+                    <strong>Penerima: Agung Setiazi</strong><br>
+                    Jl. Contoh Alamat Bahagia No. 123,<br>
+                    RT 01/RW 02, Kec. Cinta, Kota Jakarta, 12345
+                </div>
+                <button class="btn" style="margin-top: auto;" onclick="salinTeks('alamat-kado')"><i class="far fa-copy"></i> Salin Alamat</button>
+            </div>
+
         </div>
     </section>
 
@@ -398,9 +413,10 @@
             }
         }
 
+        // Pesan alert diubah menjadi lebih umum untuk Rekening dan Kado
         function salinTeks(id) {
             const txt = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(txt).then(() => alert("Nomor rekening berhasil disalin!"));
+            navigator.clipboard.writeText(txt).then(() => alert("Berhasil disalin!"));
         }
 
         function kirimWA() {

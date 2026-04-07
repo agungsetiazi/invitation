@@ -44,15 +44,30 @@
         /* --- 2. KUTIPAN --- */
         .quote { background: white; padding: 60px 20px; font-style: italic; color: #666; }
 
-        /* --- 3. MEMPELAI --- */
-        .couple { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 30px; }
-        .person { flex: 1; min-width: 250px; }
+        /* --- 3. MEMPELAI (DIPERBAIKI) --- */
+        .couple { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            align-items: center; /* Tambahan biar logo & di tengah vertikal */
+            gap: 40px; 
+            margin-top: 30px; 
+        }
+        .person { 
+            flex: 1; 
+            min-width: 250px; 
+            display: flex;           /* Tambahan buat maksa ke tengah */
+            flex-direction: column;  /* Tambahan buat maksa ke tengah */
+            align-items: center;     /* Tambahan buat maksa ke tengah */
+            text-align: center;      /* Tambahan buat maksa ke tengah */
+        }
         .person img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         .person h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); }
+        .person p { margin-bottom: 5px; }
 
         /* --- 4. WAKTU & LOKASI (COUNTDOWN) --- */
         .event-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+        .countdown { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 30px 0; }
         .time-box { background: var(--bg-light); padding: 15px; border-radius: 10px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; }
         .time-box span { display: block; font-size: 1.8rem; font-weight: 600; color: var(--gold); }
         .time-box p { font-size: 0.8rem; color: #888; margin: 0; }
@@ -69,7 +84,7 @@
 
         /* --- 7. RSVP / KEHADIRAN --- */
         .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; width: 100%; }
 
         /* --- MUSIK PLAYER --- */
         .music-btn { position: fixed; bottom: 20px; right: 20px; background: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; z-index: 99; color: var(--gold); font-size: 1.2rem; transition: 0.3s; }
@@ -119,7 +134,7 @@
                 <a href="https://instagram.com/username" target="_blank" style="color: var(--gold); text-decoration: none; margin-top: 10px; display: block;"><i class="fab fa-instagram"></i> @agungsetiazi</a>
             </div>
             
-            <h2 class="subtitle" style="margin-top: 50px;">&</h2>
+            <h2 class="subtitle" style="margin-top: 20px;">&</h2>
             
             <div class="person">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Bride">
@@ -219,13 +234,11 @@
     </footer>
 
     <script>
-        // 1. FITUR NAMA TAMU DINAMIS (Mengambil dari URL ?to=Nama)
+        // 1. FITUR NAMA TAMU DINAMIS
         const urlParams = new URLSearchParams(window.location.search);
         const namaTamu = urlParams.get('to');
         if (namaTamu) {
-            // Mengganti spasi (+) kembali menjadi teks normal
             document.getElementById('guest-name').innerText = namaTamu.replace(/\+/g, ' ');
-            // Otomatis mengisi nama di form RSVP bawah
             document.getElementById('wa-nama').value = namaTamu.replace(/\+/g, ' ');
         }
 
@@ -247,7 +260,6 @@
             isPlaying = !isPlaying;
         }
 
-        // Putar otomatis saat layar disentuh pertama kali
         document.body.addEventListener('click', function() {
             if(!isPlaying){ toggleMusic(); }
         }, { once: true });
@@ -277,7 +289,6 @@
 
         // 5. FITUR RSVP WHATSAPP
         function kirimWA() {
-            // GANTI NOMOR INI DENGAN NOMOR HP KAMU (Gunakan awalan 62)
             const nomorTujuan = "6281234567890"; 
             
             const nama = document.getElementById("wa-nama").value;

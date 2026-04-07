@@ -119,7 +119,8 @@
         
         /* --- GALERI --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 30px; }
-        .gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* Ditambahin cursor: pointer biar kelihat bisa diklik */
+        .gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; }
         .gallery-grid img:hover { transform: scale(1.05); }
 
         /* --- ANGPAO, RSVP & BUKU TAMU --- */
@@ -144,9 +145,36 @@
         /* --- ANIMATION ON SCROLL --- */
         .reveal { opacity: 0; transform: translateY(60px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- LIGHTBOX (FOTO MEMBESAR) FITUR BARU --- */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            transform: scale(0.8);
+            transition: 0.3s ease;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox.active img { transform: scale(1); }
     </style>
 </head>
 <body class="locked">
+
+    <div id="lightbox" onclick="this.classList.remove('active')">
+        <img src="" alt="Zoomed Foto">
+    </div>
 
     <div id="cover">
         <p style="letter-spacing: 2px; font-size: 0.9rem;">THE WEDDING OF</p>
@@ -395,6 +423,15 @@
             const nomorWA = "6281234567890";
             window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, "_blank");
         }
+
+        // 9. Fitur Klik Foto Membesar (Lightbox)
+        document.querySelectorAll('.gallery-grid img').forEach(image => {
+            image.onclick = () => {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.querySelector('img').src = image.src;
+                lightbox.classList.add('active');
+            };
+        });
     </script>
 </body>
 </html>

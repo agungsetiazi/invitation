@@ -6,11 +6,10 @@
     <title>Undangan Pernikahan Agung & Pasangan</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- PENGATURAN DASAR --- */
+        /* --- RESET & BASIC --- */
         :root {
             --gold: #d4a373;
             --gold-hover: #c39362;
@@ -19,61 +18,79 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--dark); overflow-x: hidden; }
-        section { padding: 80px 20px; text-align: center; }
-        .container { max-width: 800px; margin: auto; }
-        .title { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2.5rem; margin-bottom: 20px; }
-        .subtitle { font-family: 'Sacramento', cursive; font-size: 3rem; color: var(--gold); margin-bottom: 40px; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--dark); overflow-x: hidden; width: 100%; }
         
-        /* Tombol Emas */
-        .btn { display: inline-block; background: var(--gold); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.3s; border: none; cursor: pointer; font-size: 1rem; margin-top: 10px; }
-        .btn:hover { background: var(--gold-hover); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,163,115,0.4); }
+        section { padding: 60px 20px; text-align: center; width: 100%; }
+        .container { max-width: 800px; margin: auto; width: 100%; }
+        
+        .title { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2; }
+        .subtitle { font-family: 'Sacramento', cursive; font-size: 3rem; color: var(--gold); margin: 20px 0; }
+        
+        .btn { display: inline-block; background: var(--gold); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.3s; border: none; cursor: pointer; font-size: 1rem; }
+        .btn:hover { background: var(--gold-hover); transform: translateY(-3px); }
 
-        /* --- 1. HERO / COVER DEPAN --- */
+        /* --- HERO --- */
         .hero { 
             height: 100vh; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1500&q=80') center/cover; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; position: relative;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 20px;
         }
-        .hero h2 { font-weight: 300; letter-spacing: 4px; font-size: 1.2rem; text-transform: uppercase; }
-        .hero h1 { font-family: 'Sacramento', cursive; font-size: 4.5rem; margin: 10px 0; }
-        .guest-box { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 20px 40px; border-radius: 15px; margin-top: 30px; border: 1px solid rgba(255,255,255,0.3); }
-        .guest-box p { font-size: 0.9rem; margin-bottom: 5px; }
-        .guest-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+        .hero h1 { font-family: 'Sacramento', cursive; font-size: 3.5rem; margin: 10px 0; }
+        .guest-box { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); padding: 20px; border-radius: 15px; margin-top: 20px; border: 1px solid rgba(255,255,255,0.3); width: 90%; max-width: 400px; }
 
-        /* --- 2. KUTIPAN --- */
-        .quote { background: white; padding: 60px 20px; font-style: italic; color: #666; }
-
-        /* --- 3. MEMPELAI (BAGIAN YANG DIPERBAIKI) --- */
-        .couple { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; margin-top: 30px; }
-        .person { flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .person img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        /* --- MEMPELAI (FIXED SIMETRIS) --- */
+        .couple { 
+            display: flex; 
+            flex-direction: row; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 30px; 
+            margin-top: 30px;
+            width: 100%;
+        }
+        .person { 
+            flex: 1; 
+            min-width: 280px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
+        }
+        .person img { 
+            width: 160px; 
+            height: 160px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 5px solid white; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            margin-bottom: 15px; 
+        }
         .person h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); }
 
-        /* --- 4. WAKTU & LOKASI (COUNTDOWN) --- */
-        .event-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
-        .time-box { background: var(--bg-light); padding: 15px; border-radius: 10px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .time-box span { display: block; font-size: 1.8rem; font-weight: 600; color: var(--gold); }
-        .time-box p { font-size: 0.8rem; color: #888; margin: 0; }
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .couple { flex-direction: column; gap: 50px; }
+            .hero h1 { font-size: 3rem; }
+            .title { font-size: 1.8rem; }
+            .subtitle { margin: 10px 0; }
+            .person { min-width: 100%; }
+        }
 
-        /* --- 5. GALERI --- */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; transition: 0.3s; }
-        .gallery-grid img:hover { transform: scale(1.03); }
+        /* --- COUNTDOWN --- */
+        .countdown { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+        .time-box { background: white; padding: 10px; border-radius: 10px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .time-box span { display: block; font-size: 1.5rem; font-weight: 600; color: var(--gold); }
 
-        /* --- 6. ANGPAO DIGITAL --- */
-        .bank-card { background: white; padding: 30px; border-radius: 15px; max-width: 400px; margin: 20px auto; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); }
-        .bank-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
-        .bank-card p { margin-bottom: 15px; letter-spacing: 1px; font-weight: 500; font-size: 1.1rem; }
+        /* --- OTHERS --- */
+        .event-card { background: white; padding: 30px 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+        .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+        .bank-card { background: white; padding: 25px; border-radius: 15px; max-width: 400px; margin: 20px auto; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 15px; }
+        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; }
 
-        /* --- 7. RSVP / KEHADIRAN --- */
-        .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-
-        /* --- MUSIK PLAYER --- */
-        .music-btn { position: fixed; bottom: 20px; right: 20px; background: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; z-index: 99; color: var(--gold); font-size: 1.2rem; transition: 0.3s; }
-        .music-btn:hover { background: var(--bg-light); transform: scale(1.1); }
+        .music-btn { position: fixed; bottom: 20px; right: 20px; background: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 4px 10px rgba(0,0,0,0.2); color: var(--gold); }
         .spin { animation: spin 4s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
@@ -91,41 +108,31 @@
         <h2>The Wedding of</h2>
         <h1>Agung & Pasangan</h1>
         <p style="letter-spacing: 2px;">12 Desember 2026</p>
-        
         <div class="guest-box">
             <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
             <h3 id="guest-name">Tamu Undangan</h3>
-        </div>
-        <p style="margin-top: 20px; font-size: 0.8rem; font-style: italic;">*Mohon maaf bila ada kesalahan penulisan nama/gelar</p>
-    </section>
-
-    <section class="quote">
-        <div class="container">
-            <i class="fas fa-quote-left" style="color: var(--gold); font-size: 2rem; margin-bottom: 20px;"></i>
-            <p>"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."</p>
-            <p style="margin-top: 15px; font-weight: 600;">(QS. Ar-Rum: 21)</p>
         </div>
     </section>
 
     <section class="container">
         <h2 class="title">Om Swastiastu / Assalamualaikum</h2>
-        <p style="margin-bottom: 40px; color: #666;">Dengan memohon rahmat dan ridho Tuhan Yang Maha Esa, kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+        <p style="margin-bottom: 40px; color: #666; padding: 0 10px;">Dengan memohon rahmat Tuhan Yang Maha Esa, kami mengundang Anda di hari bahagia kami:</p>
         
         <div class="couple">
             <div class="person">
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80" alt="Groom">
                 <h3>Agung Setiazi</h3>
-                <p>Putra dari<br>Bpk. Nama Ayah & Ibu Nama Ibu</p>
-                <a href="https://instagram.com/username" target="_blank" style="color: var(--gold); text-decoration: none; margin-top: 10px; display: block;"><i class="fab fa-instagram"></i> @agungsetiazi</a>
+                <p>Putra dari Bpk. Ayah & Ibu Ibu</p>
+                <a href="#" style="color: var(--gold); text-decoration: none; margin-top: 5px;"><i class="fab fa-instagram"></i> @agungsetiazi</a>
             </div>
             
-            <h2 class="subtitle" style="margin-top: 50px;">&</h2>
+            <h2 class="subtitle">&</h2>
             
             <div class="person">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Bride">
                 <h3>Nama Pasangan</h3>
-                <p>Putri dari<br>Bpk. Nama Ayah & Ibu Nama Ibu</p>
-                <a href="https://instagram.com/username" target="_blank" style="color: var(--gold); text-decoration: none; margin-top: 10px; display: block;"><i class="fab fa-instagram"></i> @namapasangan</a>
+                <p>Putri dari Bpk. Ayah & Ibu Ibu</p>
+                <a href="#" style="color: var(--gold); text-decoration: none; margin-top: 5px;"><i class="fab fa-instagram"></i> @namapasangan</a>
             </div>
         </div>
     </section>
@@ -133,29 +140,16 @@
     <section style="background-color: white;">
         <div class="container">
             <h2 class="title">Jadwal Acara</h2>
-            
             <div class="event-card">
                 <i class="fas fa-ring" style="font-size: 2rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Akad Nikah</h3>
+                <h3>Akad & Resepsi</h3>
                 <p><strong>Sabtu, 12 Desember 2026</strong></p>
-                <p>Pukul 08.00 WIB - Selesai</p>
-                
-                <hr style="margin: 20px 0; border: none; border-top: 1px dashed #ddd;">
-                
-                <i class="fas fa-glass-cheers" style="font-size: 2rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Resepsi Pernikahan</h3>
-                <p><strong>Sabtu, 12 Desember 2026</strong></p>
-                <p>Pukul 11.00 WIB - 14.00 WIB</p>
-                
-                <div style="background: var(--bg-light); padding: 15px; border-radius: 10px; margin: 20px 0;">
-                    <p><strong>Gedung Serbaguna Jakarta</strong></p>
-                    <p style="font-size: 0.9rem; color: #666;">Jl. Contoh Alamat Lengkap No. 123, Jakarta Pusat</p>
-                </div>
-                
-                <a href="https://maps.google.com" target="_blank" class="btn"><i class="fas fa-map-marker-alt"></i> Buka Google Maps</a>
+                <p>08.00 WIB - Selesai</p>
+                <p style="margin-top: 15px; color: #666;">Gedung Serbaguna Jakarta<br>Jl. Contoh Alamat No. 123</p>
+                <br>
+                <a href="#" class="btn"><i class="fas fa-map-marker-alt"></i> Google Maps</a>
             </div>
 
-            <h3 style="margin-top: 50px;">Menuju Hari Bahagia</h3>
             <div class="countdown" id="countdown">
                 <div class="time-box"><span id="hari">00</span><p>Hari</p></div>
                 <div class="time-box"><span id="jam">00</span><p>Jam</p></div>
@@ -166,130 +160,68 @@
     </section>
 
     <section class="container">
-        <h2 class="title">Momen Bahagia Kami</h2>
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" alt="Gallery 1">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" alt="Gallery 2">
-            <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=500&q=80" alt="Gallery 3">
-            <img src="https://images.unsplash.com/photo-1583939000150-16b7ee11bc19?auto=format&fit=crop&w=500&q=80" alt="Gallery 4">
-        </div>
-    </section>
-
-    <section style="background-color: white;">
-        <div class="container">
-            <h2 class="title">Wedding Gift</h2>
-            <p style="margin-bottom: 30px; color: #666;">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun, jika Anda ingin memberikan tanda kasih, dapat melalui fitur di bawah ini:</p>
-            
-            <div class="bank-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA" style="height: 30px; margin-bottom: 15px;">
-                <h4>BCA</h4>
-                <p id="rekening-bca">1234567890</p>
-                <p style="font-size: 0.9rem; color: #888;">a.n Agung Setiazi</p>
-                <button class="btn" onclick="salinTeks('rekening-bca')"><i class="far fa-copy"></i> Salin No. Rekening</button>
-            </div>
-
-            <div class="bank-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_dana_blue.svg" alt="DANA" style="height: 30px; margin-bottom: 15px;">
-                <h4>DANA</h4>
-                <p id="nomor-dana">081234567890</p>
-                <p style="font-size: 0.9rem; color: #888;">a.n Agung Setiazi</p>
-                <button class="btn" onclick="salinTeks('nomor-dana')"><i class="far fa-copy"></i> Salin No. DANA</button>
-            </div>
+        <h2 class="title">Wedding Gift</h2>
+        <div class="bank-card">
+            <p><strong>BCA</strong></p>
+            <p id="rekening-bca">1234567890</p>
+            <p style="font-size: 0.8rem;">a.n Agung Setiazi</p>
+            <button class="btn" style="margin-top: 10px;" onclick="salinTeks('rekening-bca')">Salin Rekening</button>
         </div>
     </section>
 
     <section class="container">
-        <h2 class="title">RSVP & Ucapan</h2>
-        <p style="margin-bottom: 30px;">Konfirmasi kehadiran Anda melalui form berikut:</p>
-        
+        <h2 class="title">RSVP Kehadiran</h2>
         <div class="rsvp-form">
-            <input type="text" id="wa-nama" placeholder="Nama Anda" required>
+            <input type="text" id="wa-nama" placeholder="Nama Anda">
             <select id="wa-kehadiran">
-                <option value="Hadir">Ya, Saya akan Hadir</option>
-                <option value="Tidak Hadir">Maaf, Saya Tidak Bisa Hadir</option>
+                <option value="Hadir">Saya Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
             </select>
-            <input type="number" id="wa-jumlah" placeholder="Jumlah Orang (Misal: 2)" min="1">
-            <button class="btn" onclick="kirimWA()" style="width: 100%; background-color: #25D366;"><i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Kirim Konfirmasi via WA</button>
+            <button class="btn" onclick="kirimWA()" style="background: #25D366; width: 100%;"><i class="fab fa-whatsapp"></i> Konfirmasi via WA</button>
         </div>
     </section>
 
-    <footer style="background: var(--dark); color: white; padding: 40px 20px; text-align: center;">
-        <p style="font-family: 'Sacramento', cursive; font-size: 2rem; margin-bottom: 10px;">Agung & Pasangan</p>
-        <p style="font-size: 0.8rem; color: #aaa;">© 2026. All Rights Reserved.</p>
+    <footer style="background: var(--dark); color: white; padding: 40px 20px;">
+        <p style="font-family: 'Sacramento', cursive; font-size: 2rem;">Agung & Pasangan</p>
     </footer>
 
     <script>
-        // 1. FITUR NAMA TAMU DINAMIS (Mengambil dari URL ?to=Nama)
         const urlParams = new URLSearchParams(window.location.search);
-        const namaTamu = urlParams.get('to');
-        if (namaTamu) {
-            // Mengganti spasi (+) kembali menjadi teks normal
-            document.getElementById('guest-name').innerText = namaTamu.replace(/\+/g, ' ');
-            // Otomatis mengisi nama di form RSVP bawah
-            document.getElementById('wa-nama').value = namaTamu.replace(/\+/g, ' ');
-        }
+        const to = urlParams.get('to');
+        if(to) { document.getElementById('guest-name').innerText = to; document.getElementById('wa-nama').value = to; }
 
-        // 2. FITUR MUSIK
         const music = document.getElementById("bg-music");
         const musicBtn = document.getElementById("music-control");
         let isPlaying = false;
-
         function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicBtn.classList.remove("spin");
-                musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            } else {
-                music.play();
-                musicBtn.classList.add("spin");
-                musicBtn.innerHTML = '<i class="fas fa-compact-disc"></i>';
-            }
+            if (isPlaying) { music.pause(); musicBtn.classList.remove("spin"); musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
+            else { music.play(); musicBtn.classList.add("spin"); musicBtn.innerHTML = '<i class="fas fa-compact-disc"></i>'; }
             isPlaying = !isPlaying;
         }
+        document.body.addEventListener('click', () => { if(!isPlaying) toggleMusic(); }, { once: true });
 
-        // Putar otomatis saat layar disentuh pertama kali
-        document.body.addEventListener('click', function() {
-            if(!isPlaying){ toggleMusic(); }
-        }, { once: true });
-
-        // 3. FITUR HITUNG MUNDUR (Target: 12 Desember 2026 Pukul 08:00)
-        const targetDate = new Date("Dec 12, 2026 08:00:00").getTime();
-        
-        setInterval(function() {
+        const target = new Date("Dec 12, 2026 08:00:00").getTime();
+        setInterval(() => {
             const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance > 0) {
-                document.getElementById("hari").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById("jam").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById("menit").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById("detik").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            const diff = target - now;
+            if (diff > 0) {
+                document.getElementById("hari").innerText = Math.floor(diff / (1000*60*60*24));
+                document.getElementById("jam").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById("menit").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+                document.getElementById("detik").innerText = Math.floor((diff % (1000*60)) / 1000);
             }
         }, 1000);
 
-        // 4. FITUR SALIN REKENING
-        function salinTeks(idElemen) {
-            const teks = document.getElementById(idElemen).innerText;
-            navigator.clipboard.writeText(teks).then(() => {
-                alert("Nomor berhasil disalin: " + teks);
-            });
+        function salinTeks(id) {
+            const txt = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(txt).then(() => alert("Copied!"));
         }
 
-        // 5. FITUR RSVP WHATSAPP
         function kirimWA() {
-            // GANTI NOMOR INI DENGAN NOMOR HP KAMU (Gunakan awalan 62)
-            const nomorTujuan = "6281234567890"; 
-            
             const nama = document.getElementById("wa-nama").value;
             const hadir = document.getElementById("wa-kehadiran").value;
-            const jumlah = document.getElementById("wa-jumlah").value;
-            
-            if(!nama) { alert("Tolong isi nama terlebih dahulu."); return; }
-
-            const pesanText = `Halo, saya *${nama}*.\n\nSaya mengkonfirmasi bahwa saya *${hadir}* di acara pernikahan Agung & Pasangan${hadir === 'Hadir' ? ` bersama *${jumlah} orang*` : ''}.\n\nSemoga lancar sampai hari H!`;
-            
-            const linkWA = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesanText)}`;
-            window.open(linkWA, "_blank");
+            if(!nama) return alert("Isi nama dulu!");
+            window.open(`https://wa.me/6281234567890?text=Halo, saya ${nama} mengkonfirmasi ${hadir}`);
         }
     </script>
 </body>

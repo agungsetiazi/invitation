@@ -27,7 +27,9 @@
         .subtitle { font-family: 'Sacramento', cursive; font-size: 3rem; color: var(--gold); margin: 20px 0; }
         
         .btn { display: inline-block; background: var(--gold); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 500; transition: 0.3s; border: none; cursor: pointer; font-size: 1rem; }
-        .btn:hover { background: var(--gold-hover); transform: translateY(-3px); }
+        .btn:hover { background: var(--gold-hover); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,163,115,0.4); }
+        .btn-outline { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+        .btn-outline:hover { background: var(--gold); color: white; }
 
         /* --- HERO --- */
         .hero { 
@@ -68,6 +70,19 @@
         }
         .person h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); }
 
+        /* --- TIMELINE CERITA CINTA (FITUR BARU) --- */
+        .timeline { position: relative; max-width: 600px; margin: 40px auto 0; padding: 20px 0; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background: var(--gold); top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 5px; }
+        .t-item { padding: 10px 40px; position: relative; width: 50%; box-sizing: border-box; }
+        .t-item:nth-child(odd) { left: 0; text-align: right; }
+        .t-item:nth-child(even) { left: 50%; text-align: left; }
+        .t-item::after { content: ''; position: absolute; width: 16px; height: 16px; background: white; border: 4px solid var(--gold); border-radius: 50%; top: 15px; z-index: 1; }
+        .t-item:nth-child(odd)::after { right: -10px; }
+        .t-item:nth-child(even)::after { left: -10px; }
+        .t-content { padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .t-content h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 5px; }
+        .t-content p { font-size: 0.9rem; color: #666; }
+
         /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
             .couple { flex-direction: column; gap: 50px; }
@@ -75,22 +90,31 @@
             .title { font-size: 1.8rem; }
             .subtitle { margin: 10px 0; }
             .person { min-width: 100%; }
+            /* Penyesuaian Timeline di HP */
+            .timeline::after { left: 20px; }
+            .t-item { width: 100%; padding-left: 50px; padding-right: 10px; text-align: left; left: 0 !important; }
+            .t-item::after { left: 10px !important; }
         }
 
-        /* --- COUNTDOWN --- */
+        /* --- COUNTDOWN & EVENT --- */
         .countdown { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
         .time-box { background: white; padding: 10px; border-radius: 10px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .time-box span { display: block; font-size: 1.5rem; font-weight: 600; color: var(--gold); }
+        .event-card { background: white; padding: 40px 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; position: relative; overflow: hidden; }
+        
+        /* --- GALERI --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .gallery-grid img:hover { transform: scale(1.05); }
 
-        /* --- OTHERS --- */
-        .event-card { background: white; padding: 30px 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-        .gallery-grid img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; }
+        /* --- ANGPAO & RSVP --- */
         .bank-card { background: white; padding: 25px; border-radius: 15px; max-width: 400px; margin: 20px auto; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .rsvp-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 15px; }
-        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; }
+        .rsvp-form input, .rsvp-form select { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 100%; font-family: inherit; }
 
-        .music-btn { position: fixed; bottom: 20px; right: 20px; background: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 4px 10px rgba(0,0,0,0.2); color: var(--gold); }
+        /* --- MUSIK --- */
+        .music-btn { position: fixed; bottom: 20px; right: 20px; background: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 999; box-shadow: 0 4px 10px rgba(0,0,0,0.2); color: var(--gold); cursor: pointer; transition: 0.3s; }
+        .music-btn:hover { transform: scale(1.1); }
         .spin { animation: spin 4s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
@@ -139,89 +163,163 @@
 
     <section style="background-color: white;">
         <div class="container">
-            <h2 class="title">Jadwal Acara</h2>
-            <div class="event-card">
-                <i class="fas fa-ring" style="font-size: 2rem; color: var(--gold); margin-bottom: 15px;"></i>
-                <h3>Akad & Resepsi</h3>
-                <p><strong>Sabtu, 12 Desember 2026</strong></p>
-                <p>08.00 WIB - Selesai</p>
-                <p style="margin-top: 15px; color: #666;">Gedung Serbaguna Jakarta<br>Jl. Contoh Alamat No. 123</p>
-                <br>
-                <a href="#" class="btn"><i class="fas fa-map-marker-alt"></i> Google Maps</a>
+            <h2 class="title">Kisah Cinta Kami</h2>
+            <p style="color: #666;">Perjalanan singkat bagaimana kami bertemu hingga memutuskan untuk menua bersama.</p>
+            
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-content">
+                        <h3>Pertama Bertemu</h3>
+                        <p><strong>Februari 2022</strong><br>Berawal dari pertemuan tidak sengaja di sebuah acara teman, dari obrolan kecil menjadi pertemanan.</p>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-content">
+                        <h3>Menjalin Kasih</h3>
+                        <p><strong>Oktober 2023</strong><br>Setelah saling mengenal cukup lama, kami memutuskan untuk mengikat komitmen dan menjalin hubungan.</p>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-content">
+                        <h3>Lamaran</h3>
+                        <p><strong>Januari 2026</strong><br>Momen sakral dimana keluarga besar bertemu, mengikat janji untuk melangkah ke jenjang pernikahan.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="countdown" id="countdown">
-                <div class="time-box"><span id="hari">00</span><p>Hari</p></div>
-                <div class="time-box"><span id="jam">00</span><p>Jam</p></div>
-                <div class="time-box"><span id="menit">00</span><p>Menit</p></div>
-                <div class="time-box"><span id="detik">00</span><p>Detik</p></div>
+    <section class="container">
+        <h2 class="title">Jadwal Acara</h2>
+        <div class="event-card">
+            <i class="fas fa-ring" style="font-size: 2rem; color: var(--gold); margin-bottom: 15px;"></i>
+            <h3>Akad & Resepsi</h3>
+            <p><strong>Sabtu, 12 Desember 2026</strong></p>
+            <p>08.00 WIB - Selesai</p>
+            <p style="margin-top: 15px; color: #666;"><strong>Gedung Serbaguna Jakarta</strong><br>Jl. Contoh Alamat No. 123, Jakarta</p>
+            
+            <div style="margin-top: 25px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+                <a href="https://maps.google.com" target="_blank" class="btn"><i class="fas fa-map-marker-alt"></i> Buka Peta</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Agung+%26+Pasangan&dates=20261212T010000Z/20261212T070000Z&details=Jangan+lupa+hadir+di+acara+pernikahan+Agung+dan+Pasangan!&location=Gedung+Serbaguna+Jakarta" target="_blank" class="btn btn-outline"><i class="far fa-calendar-plus"></i> Save the Date</a>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 50px; font-family: 'Playfair Display', serif;">Menghitung Hari</h3>
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="hari">00</span><p>Hari</p></div>
+            <div class="time-box"><span id="jam">00</span><p>Jam</p></div>
+            <div class="time-box"><span id="menit">00</span><p>Menit</p></div>
+            <div class="time-box"><span id="detik">00</span><p>Detik</p></div>
+        </div>
+    </section>
+
+    <section style="background-color: white;">
+        <div class="container">
+            <h2 class="title">Momen Bahagia Kami</h2>
+            <p style="color: #666;">Sedikit tangkapan memori dari perjalanan kami.</p>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" alt="Gallery 1">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" alt="Gallery 2">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=500&q=80" alt="Gallery 3">
+                <img src="https://images.unsplash.com/photo-1583939000150-16b7ee11bc19?auto=format&fit=crop&w=500&q=80" alt="Gallery 4">
             </div>
         </div>
     </section>
 
     <section class="container">
         <h2 class="title">Wedding Gift</h2>
+        <p style="color: #666; margin-bottom: 20px;">Kehadiran Anda adalah hadiah terindah, namun jika Anda ingin memberikan tanda kasih dapat melalui:</p>
         <div class="bank-card">
-            <p><strong>BCA</strong></p>
-            <p id="rekening-bca">1234567890</p>
-            <p style="font-size: 0.8rem;">a.n Agung Setiazi</p>
-            <button class="btn" style="margin-top: 10px;" onclick="salinTeks('rekening-bca')">Salin Rekening</button>
+            <h3 style="color: #0033aa; margin-bottom: 10px;">BCA</h3>
+            <p id="rekening-bca" style="font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;">1234567890</p>
+            <p style="font-size: 0.9rem; color: #888;">a.n Agung Setiazi</p>
+            <button class="btn" style="margin-top: 15px;" onclick="salinTeks('rekening-bca')"><i class="far fa-copy"></i> Salin Rekening</button>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="title">RSVP Kehadiran</h2>
-        <div class="rsvp-form">
-            <input type="text" id="wa-nama" placeholder="Nama Anda">
-            <select id="wa-kehadiran">
-                <option value="Hadir">Saya Hadir</option>
-                <option value="Tidak Hadir">Tidak Hadir</option>
-            </select>
-            <button class="btn" onclick="kirimWA()" style="background: #25D366; width: 100%;"><i class="fab fa-whatsapp"></i> Konfirmasi via WA</button>
+    <section style="background-color: white;">
+        <div class="container">
+            <h2 class="title">RSVP Kehadiran</h2>
+            <p style="margin-bottom: 30px; color: #666;">Merupakan suatu kehormatan apabila Anda berkenan hadir.</p>
+            <div class="rsvp-form">
+                <input type="text" id="wa-nama" placeholder="Tulis Nama Anda..." required>
+                <select id="wa-kehadiran">
+                    <option value="Hadir">Ya, Saya Akan Hadir</option>
+                    <option value="Tidak Hadir">Maaf, Saya Berhalangan Hadir</option>
+                </select>
+                <input type="number" id="wa-jumlah" placeholder="Berapa Orang? (Misal: 2)" min="1">
+                <button class="btn" onclick="kirimWA()" style="background: #25D366; width: 100%;"><i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp</button>
+            </div>
         </div>
     </section>
 
-    <footer style="background: var(--dark); color: white; padding: 40px 20px;">
-        <p style="font-family: 'Sacramento', cursive; font-size: 2rem;">Agung & Pasangan</p>
+    <footer style="background: var(--dark); color: white; padding: 40px 20px; text-align: center;">
+        <p style="font-family: 'Sacramento', cursive; font-size: 2.5rem; color: var(--gold);">Agung & Pasangan</p>
+        <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">© 2026. Dibuat dengan cinta.</p>
     </footer>
 
     <script>
+        // Fitur Nama Dinamis di Cover
         const urlParams = new URLSearchParams(window.location.search);
         const to = urlParams.get('to');
-        if(to) { document.getElementById('guest-name').innerText = to; document.getElementById('wa-nama').value = to; }
+        if(to) { 
+            const namaFormat = to.replace(/\+/g, ' ');
+            document.getElementById('guest-name').innerText = namaFormat; 
+            document.getElementById('wa-nama').value = namaFormat; 
+        }
 
+        // Fitur Musik Latar
         const music = document.getElementById("bg-music");
         const musicBtn = document.getElementById("music-control");
         let isPlaying = false;
         function toggleMusic() {
-            if (isPlaying) { music.pause(); musicBtn.classList.remove("spin"); musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
-            else { music.play(); musicBtn.classList.add("spin"); musicBtn.innerHTML = '<i class="fas fa-compact-disc"></i>'; }
+            if (isPlaying) { 
+                music.pause(); 
+                musicBtn.classList.remove("spin"); 
+                musicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>'; 
+            } else { 
+                music.play(); 
+                musicBtn.classList.add("spin"); 
+                musicBtn.innerHTML = '<i class="fas fa-compact-disc"></i>'; 
+            }
             isPlaying = !isPlaying;
         }
         document.body.addEventListener('click', () => { if(!isPlaying) toggleMusic(); }, { once: true });
 
+        // Fitur Hitung Mundur (Target Hari H)
         const target = new Date("Dec 12, 2026 08:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
             if (diff > 0) {
-                document.getElementById("hari").innerText = Math.floor(diff / (1000*60*60*24));
-                document.getElementById("jam").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-                document.getElementById("menit").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
-                document.getElementById("detik").innerText = Math.floor((diff % (1000*60)) / 1000);
+                document.getElementById("hari").innerText = Math.floor(diff / (1000*60*60*24)).toString().padStart(2, '0');
+                document.getElementById("jam").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60)).toString().padStart(2, '0');
+                document.getElementById("menit").innerText = Math.floor((diff % (1000*60*60)) / (1000*60)).toString().padStart(2, '0');
+                document.getElementById("detik").innerText = Math.floor((diff % (1000*60)) / 1000).toString().padStart(2, '0');
             }
         }, 1000);
 
+        // Fitur Salin Rekening
         function salinTeks(id) {
             const txt = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(txt).then(() => alert("Copied!"));
+            navigator.clipboard.writeText(txt).then(() => alert("Nomor rekening berhasil disalin!"));
         }
 
+        // Fitur Kirim RSVP ke WA
         function kirimWA() {
             const nama = document.getElementById("wa-nama").value;
             const hadir = document.getElementById("wa-kehadiran").value;
-            if(!nama) return alert("Isi nama dulu!");
-            window.open(`https://wa.me/6281234567890?text=Halo, saya ${nama} mengkonfirmasi ${hadir}`);
+            const jumlah = document.getElementById("wa-jumlah").value || "1";
+            
+            if(!nama) return alert("Tolong isi nama Anda dulu ya!");
+            
+            let pesan = `Halo, saya *${nama}*.\nSaya mengkonfirmasi bahwa saya *${hadir}*`;
+            if (hadir === "Hadir") pesan += ` bersama *${jumlah} orang*`;
+            pesan += ` di acara pernikahan Agung & Pasangan.\nTerima kasih.`;
+
+            // GANTI NOMOR DI BAWAH INI SAMA NOMOR HP LU (Gunakan 62 depannya)
+            const nomorWA = "6281234567890";
+            window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`, "_blank");
         }
     </script>
 </body>
